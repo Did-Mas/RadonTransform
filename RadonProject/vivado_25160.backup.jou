@@ -1,0 +1,84 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Tue Jun 17 16:47:43 2025
+# Process ID: 25160
+# Current directory: D:/Vivado Projects/RadonFIN
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent19896 D:\Vivado Projects\RadonFIN\RadonFIN.xpr
+# Log file: D:/Vivado Projects/RadonFIN/vivado.log
+# Journal file: D:/Vivado Projects/RadonFIN\vivado.jou
+# Running On: DESKTOP-OUATK8P, OS: Windows, CPU Frequency: 3600 MHz, CPU Physical cores: 4, Host memory: 17110 MB
+#-----------------------------------------------------------
+start_gui
+open_project {D:/Vivado Projects/RadonFIN/RadonFIN.xpr}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+launch_simulation
+source radon_top_tb.tcl
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+restart
+restart
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+relaunch_sim
+run 100000 us
+relaunch_sim
+run 100000 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 100000 us
+close_sim
