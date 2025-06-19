@@ -24,18 +24,18 @@ module projection_mem #(
     parameter ANGLE_MAX = 180,
     parameter IMG_SIZE = 128
 )(
-    input  logic clk,
-    input  logic we,
-    input  logic [15:0] addr,
-    input  logic [15:0] data_in,
-    output logic [15:0] data_out
+    input  clk,
+    input  we,
+    input  [15:0] addr,
+    input  [15:0] data_in,
+    output reg [15:0] data_out
 );
-    logic [15:0] mem [0:ANGLE_MAX*IMG_SIZE-1];
+    reg [15:0] mem [0:ANGLE_MAX*IMG_SIZE-1];
 
-    always_ff @(posedge clk) begin
+    always @(posedge clk) begin
         if (we)
             mem[addr] <= data_in;
         data_out <= mem[addr];
     end
-
 endmodule
+

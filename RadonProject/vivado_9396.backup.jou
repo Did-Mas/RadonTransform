@@ -1,0 +1,18 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Wed Jun 18 14:49:07 2025
+# Process ID: 9396
+# Current directory: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonProject
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent17872 F:\StudiaNoSync\SDUP\RadonTransformREPO\RadonProject\RadonFIN.xpr
+# Log file: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonProject/vivado.log
+# Journal file: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonProject\vivado.jou
+# Running On: DESKTOP-OUATK8P, OS: Windows, CPU Frequency: 3600 MHz, CPU Physical cores: 4, Host memory: 17110 MB
+#-----------------------------------------------------------
+start_gui
+open_project F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonProject/RadonFIN.xpr
+update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+reset_run synth_1

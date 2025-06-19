@@ -1,8 +1,12 @@
 # compile verilog/system verilog design source files
-sv xil_defaultlib  \
+verilog xil_defaultlib  \
 "../../../../RadonFIN.srcs/sources_1/new/cordic.sv" \
+"../../../../RadonFIN.srcs/sources_1/new/phantom_mem.sv" \
+"../../../../RadonFIN.srcs/sources_1/new/projection_mem.sv" \
 "../../../../RadonFIN.srcs/sources_1/new/ray_sampler.sv" \
 "../../../../RadonFIN.srcs/sources_1/new/top_radon_controller.sv" \
+
+sv xil_defaultlib  \
 "../../../../RadonFIN.srcs/sim_1/new/radon_top_tb.sv" \
 
 # compile glbl module

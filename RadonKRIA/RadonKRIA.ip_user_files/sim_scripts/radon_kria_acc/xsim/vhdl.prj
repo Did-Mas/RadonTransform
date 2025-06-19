@@ -1,0 +1,4 @@
+vhdl xil_defaultlib  \
+"../../../bd/radon_kria_acc/ip/radon_kria_acc_rst_ps8_0_99M_2/sim/radon_kria_acc_rst_ps8_0_99M_2.vhd" \
+
+nosort

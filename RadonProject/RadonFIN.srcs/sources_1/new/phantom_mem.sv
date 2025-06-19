@@ -23,18 +23,18 @@
 module phantom_mem #(
     parameter IMG_SIZE = 128
 )(
-    input  logic clk,
-    input  logic [15:0] addr,
-    input  logic        we,
-    input  logic [7:0]  data_in,
-    output logic [7:0]  data_out
+    input  clk,
+    input  [15:0] addr,
+    input         we,
+    input  [7:0]  data_in,
+    output reg [7:0]  data_out
 );
-    logic [7:0] mem [0:IMG_SIZE*IMG_SIZE-1];
+    reg [7:0] mem [0:IMG_SIZE*IMG_SIZE-1];
 
-    always_ff @(posedge clk) begin
+    always @(posedge clk) begin
         if (we)
             mem[addr] <= data_in;
         data_out <= mem[addr];
     end
-
 endmodule
+

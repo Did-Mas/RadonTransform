@@ -1,0 +1,45 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Thu Jun 19 16:11:07 2025
+# Process ID: 25932
+# Current directory: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent18016 F:\StudiaNoSync\SDUP\RadonTransformREPO\RadonKRIA\RadonKRIA.xpr
+# Log file: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/vivado.log
+# Journal file: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA\vivado.jou
+# Running On: DESKTOP-OUATK8P, OS: Windows, CPU Frequency: 3600 MHz, CPU Physical cores: 4, Host memory: 17110 MB
+#-----------------------------------------------------------
+start_gui
+open_project F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.xpr
+update_compile_order -fileset sources_1
+write_hw_platform -fixed -include_bit -force -file F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/radon_kria_acc_wrapper.xsa
+ipx::edit_ip_in_project -upgrade true -name radon_kria_ip_v1_0_project -directory F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.tmp/radon_kria_ip_v1_0_project f:/StudiaNoSync/SDUP/RadonTransformREPO/ip_repo/radon_kria_ip_1.0/component.xml
+update_compile_order -fileset sources_1
+set_property core_revision 3 [ipx::current_core]
+ipx::update_source_project_archive -component [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::check_integrity [ipx::current_core]
+ipx::save_core [ipx::current_core]
+ipx::move_temp_component_back -component [ipx::current_core]
+close_project -delete
+update_ip_catalog -rebuild -repo_path f:/StudiaNoSync/SDUP/RadonTransformREPO/ip_repo/radon_kria_ip_1.0
+open_bd_design {F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.srcs/sources_1/bd/radon_kria_acc/radon_kria_acc.bd}
+report_ip_status -name ip_status 
+upgrade_ip -vlnv xilinx.com:user:radon_kria_ip:1.0 [get_ips  radon_kria_acc_radon_kria_ip_0_2] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips radon_kria_acc_radon_kria_ip_0_2] -no_script -sync -force -quiet
+generate_target all [get_files  F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.srcs/sources_1/bd/radon_kria_acc/radon_kria_acc.bd]
+catch { config_ip_cache -export [get_ips -all radon_kria_acc_radon_kria_ip_0_2] }
+catch { config_ip_cache -export [get_ips -all radon_kria_acc_auto_ds_0] }
+catch { config_ip_cache -export [get_ips -all radon_kria_acc_auto_pc_0] }
+export_ip_user_files -of_objects [get_files F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.srcs/sources_1/bd/radon_kria_acc/radon_kria_acc.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.srcs/sources_1/bd/radon_kria_acc/radon_kria_acc.bd]
+launch_runs radon_kria_acc_radon_kria_ip_0_2_synth_1 -jobs 8
+wait_on_run radon_kria_acc_radon_kria_ip_0_2_synth_1
+export_simulation -of_objects [get_files F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.srcs/sources_1/bd/radon_kria_acc/radon_kria_acc.bd] -directory F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.ip_user_files/sim_scripts -ip_user_files_dir F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.ip_user_files -ipstatic_source_dir F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.ip_user_files/ipstatic -lib_map_path [list {modelsim=F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.cache/compile_simlib/modelsim} {questa=F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.cache/compile_simlib/questa} {riviera=F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.cache/compile_simlib/riviera} {activehdl=F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+write_hw_platform -fixed -include_bit -force -file F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/radon_kria_acc_wrapper.xsa

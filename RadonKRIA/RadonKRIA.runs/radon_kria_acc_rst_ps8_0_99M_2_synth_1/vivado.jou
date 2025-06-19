@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Thu Jun 19 15:57:50 2025
+# Process ID: 27372
+# Current directory: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/radon_kria_acc_rst_ps8_0_99M_2_synth_1
+# Command line: vivado.exe -log radon_kria_acc_rst_ps8_0_99M_2.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source radon_kria_acc_rst_ps8_0_99M_2.tcl
+# Log file: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/radon_kria_acc_rst_ps8_0_99M_2_synth_1/radon_kria_acc_rst_ps8_0_99M_2.vds
+# Journal file: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/radon_kria_acc_rst_ps8_0_99M_2_synth_1\vivado.jou
+# Running On: DESKTOP-OUATK8P, OS: Windows, CPU Frequency: 3600 MHz, CPU Physical cores: 4, Host memory: 17110 MB
+#-----------------------------------------------------------
+source radon_kria_acc_rst_ps8_0_99M_2.tcl -notrace

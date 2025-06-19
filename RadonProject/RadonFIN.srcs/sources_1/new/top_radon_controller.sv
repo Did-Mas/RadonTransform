@@ -23,58 +23,53 @@
 module top_radon_controller #(
     parameter ANGLE_MAX = 180,
     parameter IMG_SIZE = 128,
-    parameter W = 16, // Q2.14 fixed-point
+    parameter W = 16,
     parameter FXP_MUL = 16384
 )(
-    input logic clk,
-    input logic rst,
-    input logic start,
-    output logic done,
-    
-    input  logic        phantom_we_ext,
-    input  logic [15:0] phantom_addr_ext,
-    input  logic [7:0]  phantom_data_ext,
-    
-    input  logic [15:0] proj_read_addr,
-    output logic [15:0] proj_data_out
+    input clk,
+    input rst,
+    input start,
+    output reg done,
+
+    input  phantom_we_ext,
+    input  [15:0] phantom_addr_ext,
+    input  [7:0]  phantom_data_ext,
+
+    input  [15:0] proj_read_addr,
+    output [15:0] proj_data_out
 );
 
-    logic [7:0] angle_idx;
-    logic [7:0] s_idx;
-    logic signed [W-1:0] s_fp;         // Q2.14
-    logic signed [W-1:0] STEP_FP;
+    reg [7:0] angle_idx;
+    reg [7:0] s_idx;
+    reg signed [W-1:0] s_fp;    // Q2.14
+    reg signed [W-1:0] STEP_FP;
 
-    logic        phantom_we_mux;
-    logic [15:0] phantom_addr_mux;
-    logic [7:0]  phantom_data_mux;
-    logic [7:0]  phantom_data_out;
-    
-    assign phantom_we_mux   = (state == IDLE) ? phantom_we_ext   : 1'b0;
-    assign phantom_addr_mux = (state == IDLE) ? phantom_addr_ext : pixel_addr;
-    assign phantom_data_mux = phantom_data_ext;
+    reg        phantom_we_mux;
+    reg [15:0] phantom_addr_mux;
+    reg [7:0]  phantom_data_mux;
 
-    logic [15:0] pixel_addr;
-    logic [7:0] pixel_val;
+    wire [15:0] pixel_addr;
+    wire [7:0] pixel_val;
 
-    logic ray_start;
-    logic ray_done;
-    logic [15:0] ray_out;
-    
-    logic [15:0] proj_addr;
-    logic proj_we;
-    logic [15:0] proj_mem_out;
+    reg ray_start;
+    wire ray_done;
+    wire [15:0] ray_out;
+
+    reg [15:0] proj_addr;
+    reg proj_we;
+    wire [15:0] proj_mem_out;
     assign proj_data_out = proj_mem_out;
 
-    // Convert angle index to fixed-point radians (Q2.14)
-    logic [W-1:0] angle_fixed; // changed to unsigned to support 0 to 180 deg
-    always_comb begin
-        angle_fixed = angle_idx * 16'd286; // 1° × (?/180) × 2^14
+    // Angle to fixed-point radians
+    reg [W-1:0] angle_fixed;
+    always @(*) begin
+        angle_fixed = angle_idx * 16'd286;
     end
 
-    // CORDIC instantiation
-    logic cordic_start;
-    logic cordic_ready;
-    logic signed [W-1:0] sin_val, cos_val;
+    // CORDIC
+    reg cordic_start;
+    wire cordic_ready;
+    wire signed [W-1:0] sin_val, cos_val;
 
     cordic_rtl #(.W(W)) cordic_inst (
         .clock(clk),
@@ -103,7 +98,7 @@ module top_radon_controller #(
         .pixel_addr(pixel_addr),
         .pixel_val(pixel_val)
     );
-    
+
     phantom_mem #(.IMG_SIZE(IMG_SIZE)) phantom_inst (
         .clk(clk),
         .addr(phantom_addr_mux),
@@ -115,32 +110,33 @@ module top_radon_controller #(
     projection_mem #(.ANGLE_MAX(ANGLE_MAX), .IMG_SIZE(IMG_SIZE)) proj_inst (
         .clk(clk),
         .we(proj_we),
-        .addr(proj_we ? proj_addr : proj_read_addr),  // muxed for read vs write
+        .addr(proj_we ? proj_addr : proj_read_addr),
         .data_in(ray_out),
         .data_out(proj_mem_out)
     );
 
-    typedef enum logic [2:0] {
-        IDLE,
-        START_CORDIC,
-        WAIT_CORDIC,
-        START_RAY,
-        WAIT_RAY,
-        ADVANCE
-    } state_t;
+    // State machine encoding
+    localparam IDLE = 0, START_CORDIC = 1, WAIT_CORDIC = 2, START_RAY = 3, WAIT_RAY = 4, ADVANCE = 5;
+    reg [2:0] state;
 
-    state_t state;
+    always @(*) begin
+        phantom_we_mux   = (state == IDLE) ? phantom_we_ext   : 1'b0;
+        phantom_addr_mux = (state == IDLE) ? phantom_addr_ext : pixel_addr;
+        phantom_data_mux = phantom_data_ext;
+    end
 
-    always_ff @(posedge clk or posedge rst) begin
+    always @(posedge clk or posedge rst) begin
         if (rst) begin
             state        <= IDLE;
             angle_idx    <= 0;
             s_idx        <= 0;
-            s_fp         <= -16'sd16384; // -1.0 in Q2.14
-            STEP_FP <= (2 * FXP_MUL) / IMG_SIZE;  // s_step = 2.0 / IMG_SIZE in Q2.14
+            s_fp         <= -16'sd16384;
+            STEP_FP <= (2 * FXP_MUL) / IMG_SIZE;
             done         <= 0;
             cordic_start <= 0;
             ray_start    <= 0;
+            proj_addr    <= 0;
+            proj_we      <= 0;
         end else begin
             case (state)
                 IDLE: begin
@@ -153,22 +149,18 @@ module top_radon_controller #(
                         state        <= START_CORDIC;
                     end
                 end
-
                 START_CORDIC: begin
                     cordic_start <= 0;
                     state <= WAIT_CORDIC;
                 end
-
                 WAIT_CORDIC: begin
                     if (cordic_ready)
                         state <= START_RAY;
                 end
-
                 START_RAY: begin
                     ray_start <= 1;
                     state <= WAIT_RAY;
                 end
-
                 WAIT_RAY: begin
                     ray_start <= 0;
                     proj_we <= 0;
@@ -178,7 +170,6 @@ module top_radon_controller #(
                         state <= ADVANCE;
                     end
                 end
-
                 ADVANCE: begin
                     proj_we <= 0;
                     if (s_idx == IMG_SIZE - 1) begin
@@ -201,5 +192,7 @@ module top_radon_controller #(
             endcase
         end
     end
+
 endmodule
+
 
