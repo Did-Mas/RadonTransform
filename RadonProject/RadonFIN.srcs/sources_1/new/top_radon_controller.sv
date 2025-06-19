@@ -29,9 +29,14 @@ module top_radon_controller #(
     input logic clk,
     input logic rst,
     input logic start,
-
     output logic done,
-    output logic [15:0] projection_mem [0:ANGLE_MAX * IMG_SIZE-1]
+    
+    input  logic        phantom_we_ext,
+    input  logic [15:0] phantom_addr_ext,
+    input  logic [7:0]  phantom_data_ext,
+    
+    input  logic [15:0] proj_read_addr,
+    output logic [15:0] proj_data_out
 );
 
     logic [7:0] angle_idx;
@@ -39,13 +44,26 @@ module top_radon_controller #(
     logic signed [W-1:0] s_fp;         // Q2.14
     logic signed [W-1:0] STEP_FP;
 
-    logic [7:0] phantom_mem [0:IMG_SIZE*IMG_SIZE-1];
+    logic        phantom_we_mux;
+    logic [15:0] phantom_addr_mux;
+    logic [7:0]  phantom_data_mux;
+    logic [7:0]  phantom_data_out;
+    
+    assign phantom_we_mux   = (state == IDLE) ? phantom_we_ext   : 1'b0;
+    assign phantom_addr_mux = (state == IDLE) ? phantom_addr_ext : pixel_addr;
+    assign phantom_data_mux = phantom_data_ext;
+
     logic [15:0] pixel_addr;
     logic [7:0] pixel_val;
 
     logic ray_start;
     logic ray_done;
     logic [15:0] ray_out;
+    
+    logic [15:0] proj_addr;
+    logic proj_we;
+    logic [15:0] proj_mem_out;
+    assign proj_data_out = proj_mem_out;
 
     // Convert angle index to fixed-point radians (Q2.14)
     logic [W-1:0] angle_fixed; // changed to unsigned to support 0 to 180 deg
@@ -85,10 +103,22 @@ module top_radon_controller #(
         .pixel_addr(pixel_addr),
         .pixel_val(pixel_val)
     );
+    
+    phantom_mem #(.IMG_SIZE(IMG_SIZE)) phantom_inst (
+        .clk(clk),
+        .addr(phantom_addr_mux),
+        .we(phantom_we_mux),
+        .data_in(phantom_data_mux),
+        .data_out(pixel_val)
+    );
 
-    always_comb begin
-        pixel_val = phantom_mem[pixel_addr];
-    end
+    projection_mem #(.ANGLE_MAX(ANGLE_MAX), .IMG_SIZE(IMG_SIZE)) proj_inst (
+        .clk(clk),
+        .we(proj_we),
+        .addr(proj_we ? proj_addr : proj_read_addr),  // muxed for read vs write
+        .data_in(ray_out),
+        .data_out(proj_mem_out)
+    );
 
     typedef enum logic [2:0] {
         IDLE,
@@ -141,13 +171,16 @@ module top_radon_controller #(
 
                 WAIT_RAY: begin
                     ray_start <= 0;
+                    proj_we <= 0;
                     if (ray_done) begin
-                        projection_mem[angle_idx * IMG_SIZE + s_idx] <= ray_out;
+                        proj_addr <= angle_idx  * IMG_SIZE + s_idx;
+                        proj_we <= 1;
                         state <= ADVANCE;
                     end
                 end
 
                 ADVANCE: begin
+                    proj_we <= 0;
                     if (s_idx == IMG_SIZE - 1) begin
                         s_idx <= 0;
                         s_fp  <= -16'sd16384;

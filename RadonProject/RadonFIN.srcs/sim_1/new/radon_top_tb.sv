@@ -10,7 +10,12 @@ module radon_top_tb;
     logic start;
     logic done;
 
-    logic [15:0] projection_mem [0:ANGLES * SIZE-1];
+    logic phantom_we;
+    logic [15:0] phantom_addr;
+    logic [7:0]  phantom_data;
+
+    logic [15:0] proj_read_addr;
+    logic [15:0] proj_data_out;
 
     // Clock generation
     always #5 clk = ~clk;
@@ -19,28 +24,40 @@ module radon_top_tb;
         .ANGLE_MAX(ANGLES),
         .IMG_SIZE(SIZE),
         .W(FP_BITS),
-        .FXP_MUL(16384),
-        .FXP_SHIFT(14)
+        .FXP_MUL(16384)
     ) uut (
         .clk(clk),
         .rst(rst),
         .start(start),
         .done(done),
-        .projection_mem(projection_mem)
+        .phantom_we_ext(phantom_we),
+        .phantom_addr_ext(phantom_addr),
+        .phantom_data_ext(phantom_data),
+        .proj_read_addr(proj_read_addr),
+        .proj_data_out(proj_data_out)
     );
 
     initial begin
+        $display("START...");
         clk   = 0;
         rst   = 1;
         start = 0;
+        phantom_we = 0;
+        phantom_addr = 0;
+        phantom_data = 0;
         #20;
         rst   = 0;
         #20;
+        $display("loading phantom...");
+        load_phantom();
+        $display("load done");
+        #20;
         start = 1;
+        $display("calculate");
         #10;
         start = 0;
     end
-    
+
     task automatic insert_rect(
         input int x_start,
         input int y_start,
@@ -53,30 +70,46 @@ module radon_top_tb;
             for (x = 0; x < width; x++) begin
                 int xx = x_start + x;
                 int yy = y_start + y;
-                if (xx >= 0 && xx < SIZE && yy >= 0 && yy < SIZE)
-                    uut.phantom_mem[yy * SIZE + xx] = val;
+                if (xx >= 0 && xx < SIZE && yy >= 0 && yy < SIZE) begin
+                    phantom_addr = yy * SIZE + xx;
+                    phantom_data = val;
+                    phantom_we   = 1;
+                    @(posedge clk);
+                    phantom_we   = 0;
+                    @(posedge clk);
+                end
             end
         end
     endtask
 
-    // Load a simple rectangular phantom into memory
-    initial begin
-        for (int i = 0; i < SIZE * SIZE; i++) uut.phantom_mem[i] = 8'd0;
-        insert_rect(16, 16, 32, 32, 8'd100);   // bright small square
-        insert_rect(20, 20, 8, 8, 8'd255);   // bright small square
-        insert_rect(80, 80, 20, 20, 8'd120); // larger dimmer square
-    end
+    task automatic load_phantom();
+        for (int i = 0; i < SIZE * SIZE; i++) begin
+            phantom_addr = i;
+            phantom_data = 8'd0;
+            phantom_we   = 1;
+            @(posedge clk);
+            phantom_we   = 0;
+            @(posedge clk);
+        end
+        insert_rect(16, 16, 32, 32, 8'd100);   // bright square
+        insert_rect(20, 20, 8, 8, 8'd255);     // very bright core
+        insert_rect(80, 80, 20, 20, 8'd120);   // dim square
+    endtask
 
     // Save phantom image
     integer phantom_file;
     initial begin
         integer x, y;
-        #100; // Ensure memory is filled before writing
+        @(posedge done);
+        #10;
         phantom_file = $fopen("phantom.csv", "w");
         $display("Saving phantom to phantom.csv...");
         for (y = 0; y < SIZE; y++) begin
             for (x = 0; x < SIZE; x++) begin
-                $fwrite(phantom_file, "%0d", uut.phantom_mem[y * SIZE + x]);
+                phantom_addr = y * SIZE + x;
+                phantom_we = 0;
+                @(posedge clk);
+                $fwrite(phantom_file, "%0d", uut.phantom_inst.mem[phantom_addr]);
                 if (x != SIZE - 1)
                     $fwrite(phantom_file, ",");
                 else
@@ -96,7 +129,9 @@ module radon_top_tb;
         proj_file = $fopen("projection.csv", "w");
         for (a = 0; a < ANGLES; a++) begin
             for (s = 0; s < SIZE; s++) begin
-                $fwrite(proj_file, "%0d", projection_mem[a * SIZE + s]);
+                proj_read_addr = a * SIZE + s;
+                @(posedge clk);
+                $fwrite(proj_file, "%0d", proj_data_out);
                 if (s != SIZE - 1)
                     $fwrite(proj_file, ",");
                 else
@@ -107,3 +142,4 @@ module radon_top_tb;
         $finish;
     end
 endmodule
+
