@@ -21,9 +21,7 @@
 
 
 module cordic_rtl
-    #(parameter integer W = 16, // Q2.14 fixed-point
-      parameter FXP_MUL = 16384, // 2^14
-      parameter FXP_SHIFT = 14)
+    #(parameter integer W = 16) // Q2.14 fixed-point)
     (
     input logic clock,
     input logic reset,
@@ -55,16 +53,12 @@ module cordic_rtl
         atan[15] = 16'sd1;
     end
 
-    typedef enum logic [3:0] {
-        IDLE = 4'd0,
-        INIT = 4'd1,
-        MIRROR = 4'd2,
-        ROTATE = 4'd3,
-        NEXT = 4'd4,
-        SCALE1 = 4'd5,
-        SCALE2 = 4'd6,
-        SCALE3 = 4'd7,
-        DONE = 4'd8
+    typedef enum logic [2:0] {
+        IDLE   = 3'd0,
+        INIT   = 3'd1,
+        ROTATE = 3'd2,
+        SCALE1 = 3'd3,
+        DONE   = 3'd4
     } state_t;
 
     state_t state;
@@ -85,19 +79,19 @@ module cordic_rtl
                 IDLE: begin
                     ready_out <= 0;
                     if (start) begin
-                        // Reflect angle to [0, pi/2] and record sign
-                        if (angle_in <= 16'sd25736) begin // pi/2 ? 1.5708 * 16384 ? 25736
-                            angle_mirrored <= angle_in;
-                            mirror_sign <= 0;
-                        end else begin
-                            angle_mirrored <= 16'sd51472 - angle_in; // pi ? 3.1416 * 16384 ? 51472
-                            mirror_sign <= 1;
-                        end
                         state <= INIT;
                     end
                 end
 
                 INIT: begin
+                    // Reflect angle to [0, pi/2] and record sign
+                    if (angle_in <= 16'd25736) begin // pi/2 ? 1.5708 * 16384 ? 25736
+                        angle_mirrored <= angle_in;
+                        mirror_sign <= 0;
+                    end else begin
+                        angle_mirrored <= 16'd51472 - angle_in; // pi ? 3.1416 * 16384 ? 51472
+                        mirror_sign <= 1;
+                    end
                     x <= 16'sd9980; // Pre-scaled K ? 0.60725 * 16384 ? 9980
                     y <= 0;
                     z <= angle_mirrored;
@@ -107,16 +101,14 @@ module cordic_rtl
 
                 ROTATE: begin
                     if (z >= 0) begin
-                        x_new = x - (y >>> i);
-                        y_new = y + (x >>> i);
-                        z = z - atan[i];
+                        x <= x - (y >>> i);
+                        y <= y + (x >>> i);
+                        z <= z - atan[i];
                     end else begin
-                        x_new = x + (y >>> i);
-                        y_new = y - (x >>> i);
-                        z = z + atan[i];
+                        x <= x + (y >>> i);
+                        y <= y - (x >>> i);
+                        z <= z + atan[i];
                     end
-                    x <= x_new;
-                    y <= y_new;
                     i <= i + 1;
                     state <= (i < 15) ? ROTATE : SCALE1;
                 end

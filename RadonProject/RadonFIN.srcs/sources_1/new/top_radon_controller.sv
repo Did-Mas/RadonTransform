@@ -24,15 +24,14 @@ module top_radon_controller #(
     parameter ANGLE_MAX = 180,
     parameter IMG_SIZE = 128,
     parameter W = 16, // Q2.14 fixed-point
-    parameter FXP_MUL = 16384,
-    parameter FXP_SHIFT = 14
+    parameter FXP_MUL = 16384
 )(
     input logic clk,
     input logic rst,
     input logic start,
 
     output logic done,
-    output logic [15:0] projection_mem [0:ANGLE_MAX-1][0:IMG_SIZE-1]
+    output logic [15:0] projection_mem [0:ANGLE_MAX * IMG_SIZE-1]
 );
 
     logic [7:0] angle_idx;
@@ -59,7 +58,7 @@ module top_radon_controller #(
     logic cordic_ready;
     logic signed [W-1:0] sin_val, cos_val;
 
-    cordic_rtl #(.W(W), .FXP_MUL(FXP_MUL), .FXP_SHIFT(FXP_SHIFT)) cordic_inst (
+    cordic_rtl #(.W(W)) cordic_inst (
         .clock(clk),
         .reset(rst),
         .start(cordic_start),
@@ -72,14 +71,12 @@ module top_radon_controller #(
     // Ray Sampler
     ray_sampler #(
         .IMG_SIZE(IMG_SIZE),
-        .IMG_BITS(8),
         .FP_BITS(W),
         .RAY_LENGTH(128)
     ) sampler_inst (
         .clk(clk),
         .rst(rst),
         .start(ray_start),
-        .angle_deg(angle_idx),
         .s(s_fp),
         .cos_val(cos_val),
         .sin_val(sin_val),
@@ -145,7 +142,7 @@ module top_radon_controller #(
                 WAIT_RAY: begin
                     ray_start <= 0;
                     if (ray_done) begin
-                        projection_mem[angle_idx][s_idx] <= ray_out;
+                        projection_mem[angle_idx * IMG_SIZE + s_idx] <= ray_out;
                         state <= ADVANCE;
                     end
                 end

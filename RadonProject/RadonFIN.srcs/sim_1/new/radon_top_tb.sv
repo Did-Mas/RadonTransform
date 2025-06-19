@@ -10,7 +10,7 @@ module radon_top_tb;
     logic start;
     logic done;
 
-    logic [15:0] projection_mem [0:ANGLES-1][0:SIZE-1];
+    logic [15:0] projection_mem [0:ANGLES * SIZE-1];
 
     // Clock generation
     always #5 clk = ~clk;
@@ -96,7 +96,7 @@ module radon_top_tb;
         proj_file = $fopen("projection.csv", "w");
         for (a = 0; a < ANGLES; a++) begin
             for (s = 0; s < SIZE; s++) begin
-                $fwrite(proj_file, "%0d", projection_mem[a][s]);
+                $fwrite(proj_file, "%0d", projection_mem[a * SIZE + s]);
                 if (s != SIZE - 1)
                     $fwrite(proj_file, ",");
                 else

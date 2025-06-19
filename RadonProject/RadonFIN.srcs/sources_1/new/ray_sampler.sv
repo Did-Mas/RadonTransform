@@ -22,16 +22,13 @@
 
 module ray_sampler #(
     parameter IMG_SIZE = 128,         // Image dimension (square)
-    parameter IMG_BITS = 8,           // Bits per pixel
     parameter FP_BITS = 16,            // Total fixed-point bits (Q2.14)
     parameter FB_BITS = 14,            // Fractional bits
-    parameter RAY_LENGTH = 128,        // Samples per ray
-    parameter FXP_MUL = 16384          // 2^14 (Q2.14 scale)
+    parameter RAY_LENGTH = 128        // Samples per ray
 )(
     input  logic clk,
     input  logic rst,
     input  logic start,
-    input  logic [7:0] angle_deg,
     input  logic signed [FP_BITS-1:0] s,
     output logic [15:0] projection_out,
     output logic done,
