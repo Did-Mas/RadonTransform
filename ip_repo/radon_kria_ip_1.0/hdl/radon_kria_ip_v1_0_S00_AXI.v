@@ -411,7 +411,7 @@
     assign phantom_we     = slv_reg0[2];
     assign phantom_addr   = slv_reg0[31:16];
     assign phantom_data   = slv_reg1[7:0];
-    assign proj_read_addr = slv_reg1[24:16];
+    assign proj_read_addr = slv_reg1[31:16];
     
     wire [C_S_AXI_DATA_WIDTH -1:0] slv_wire2;
     assign slv_wire2[15:4] = 12'b0;  
@@ -461,7 +461,10 @@
     input  [7:0]  phantom_data_ext,
 
     input  [15:0] proj_read_addr,
-    output [15:0] proj_data_out
+    output [15:0] proj_data_out,
+    
+    output [7:0] angle_idx,
+    output [15:0] sin_val
 );
 
     reg [7:0] angle_idx;
