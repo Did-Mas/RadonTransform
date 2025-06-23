@@ -90,9 +90,6 @@ vlog -work axi_crossbar_v2_1_27  -incr -mfcu "+incdir+../../../../RadonKRIA.gen/
 
 vlog -work xil_defaultlib  -incr -mfcu "+incdir+../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/ec67/hdl" "+incdir+../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/8cdf/hdl" "+incdir+H:/Xilinx/Vivado/2022.1/data/xilinx_vip/include" \
 "../../../bd/radon_kria_acc/ip/radon_kria_acc_xbar_0/sim/radon_kria_acc_xbar_0.v" \
-"../../../bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v" \
-"../../../bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0.v" \
-"../../../bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/sim/radon_kria_acc_radon_kria_ip_0_2.v" \
 
 vcom -work lib_cdc_v1_0_2  -93 \
 "../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd" \
@@ -102,6 +99,11 @@ vcom -work proc_sys_reset_v5_0_13  -93 \
 
 vcom -work xil_defaultlib  -93 \
 "../../../bd/radon_kria_acc/ip/radon_kria_acc_rst_ps8_0_99M_2/sim/radon_kria_acc_rst_ps8_0_99M_2.vhd" \
+
+vlog -work xil_defaultlib  -incr -mfcu "+incdir+../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/ec67/hdl" "+incdir+../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/8cdf/hdl" "+incdir+H:/Xilinx/Vivado/2022.1/data/xilinx_vip/include" \
+"../../../bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v" \
+"../../../bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0.v" \
+"../../../bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/sim/radon_kria_acc_radon_kria_ip_0_2.v" \
 
 vlog -work axi_protocol_converter_v2_1_26  -incr -mfcu "+incdir+../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/ec67/hdl" "+incdir+../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/8cdf/hdl" "+incdir+H:/Xilinx/Vivado/2022.1/data/xilinx_vip/include" \
 "../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/90c8/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \

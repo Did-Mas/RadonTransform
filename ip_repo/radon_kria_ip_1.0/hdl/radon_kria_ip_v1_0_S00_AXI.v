@@ -559,8 +559,8 @@
             state_out    <= IDLE;
             angle_idx    <= 0;
             s_idx        <= 0;
-            s_fp         <= -16'sd16384;
-            STEP_FP <= (2 * FXP_MUL) / IMG_SIZE;
+            s_fp         <= -16'sd8192;
+            STEP_FP <= (1 * FXP_MUL) / IMG_SIZE;
             done         <= 0;
             cordic_start <= 0;
             ray_start    <= 0;
@@ -573,7 +573,7 @@
                     if (start) begin
                         angle_idx    <= 0;
                         s_idx        <= 0;
-                        s_fp         <= -16'sd16384;
+                        s_fp         <= -16'sd8192;
                         cordic_start <= 1;
                         state        <= START_CORDIC;
                         state_out    <= START_CORDIC;
@@ -608,7 +608,7 @@
                     proj_we <= 0;
                     if (s_idx == IMG_SIZE - 1) begin
                         s_idx <= 0;
-                        s_fp  <= -16'sd16384;
+                        s_fp  <= -16'sd8192;
                         if (angle_idx == ANGLE_MAX - 1) begin
                             done  <= 1;
                             state <= IDLE;
@@ -673,7 +673,7 @@ module ray_sampler #(
     parameter IMG_SIZE = 128,
     parameter FP_BITS = 16,
     parameter FB_BITS = 14,
-    parameter RAY_LENGTH = 128
+    parameter RAY_LENGTH = 181
 )(
     input clk,
     input rst,
@@ -690,7 +690,7 @@ module ray_sampler #(
     localparam IDLE = 0, TRACE = 1, WAIT_ADDR = 2, WAIT_PIXEL = 3, ACCUM_DONE = 4;
     reg [2:0] state;
 
-    localparam signed [FP_BITS-1:0] T_INIT = -16'sd16384;
+    localparam signed [FP_BITS-1:0] T_INIT = -16'sd8192;
     localparam HALF_IMG = IMG_SIZE / 2;
 
     reg signed [FP_BITS-1:0] t_fp;
@@ -705,7 +705,7 @@ module ray_sampler #(
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             state <= IDLE;
-            STEP <= (32'sd2 << (FP_BITS-2)) / RAY_LENGTH;
+            STEP <= (32'sd1 << FB_BITS) / RAY_LENGTH;
             done <= 0;
             acc_sum <= 0;
             sample_count <= 0;

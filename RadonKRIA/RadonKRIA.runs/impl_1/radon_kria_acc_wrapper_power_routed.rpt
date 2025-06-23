@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date             : Thu Jun 19 16:46:09 2025
+| Date             : Mon Jun 23 23:52:31 2025
 | Host             : DESKTOP-OUATK8P running 64-bit major release  (build 9200)
 | Command          : report_power -file radon_kria_acc_wrapper_power_routed.rpt -pb radon_kria_acc_wrapper_power_summary_routed.pb -rpx radon_kria_acc_wrapper_power_routed.rpx
 | Design           : radon_kria_acc_wrapper
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.004 |        4 |       --- |             --- |
-| CLB Logic                |     0.003 |     3865 |       --- |             --- |
-|   LUT as Logic           |     0.002 |     1504 |    117120 |            1.28 |
+| CLB Logic                |     0.003 |     3876 |       --- |             --- |
+|   LUT as Logic           |     0.002 |     1511 |    117120 |            1.29 |
 |   LUT as Shift Register  |    <0.001 |       46 |     57600 |            0.08 |
-|   Register               |    <0.001 |     1718 |    234240 |            0.73 |
+|   Register               |    <0.001 |     1726 |    234240 |            0.74 |
 |   CARRY8                 |    <0.001 |       27 |     14640 |            0.18 |
 |   LUT as Distributed RAM |    <0.001 |       44 |     57600 |            0.08 |
-|   Others                 |     0.000 |      111 |       --- |             --- |
+|   Others                 |     0.000 |      112 |       --- |             --- |
 |   F7/F8 Muxes            |     0.000 |        2 |    117120 |           <0.01 |
-| Signals                  |     0.002 |     3395 |       --- |             --- |
+| Signals                  |     0.002 |     3413 |       --- |             --- |
 | Block RAM                |     0.006 |       16 |       144 |           11.11 |
 | DSPs                     |     0.001 |        4 |      1248 |            0.32 |
 | PS8                      |     2.415 |        1 |       --- |             --- |
@@ -78,7 +78,7 @@ Table of Contents
 +-----------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source          | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint          |       0.720 |     0.108 |       0.022 |      0.087 |       NA    | Unspecified | NA         |
+| Vccint          |       0.720 |     0.109 |       0.022 |      0.087 |       NA    | Unspecified | NA         |
 | Vccint_io       |       0.850 |     0.036 |       0.000 |      0.036 |       NA    | Unspecified | NA         |
 | Vccbram         |       0.850 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vccaux          |       1.800 |     0.075 |       0.000 |      0.075 |       NA    | Unspecified | NA         |

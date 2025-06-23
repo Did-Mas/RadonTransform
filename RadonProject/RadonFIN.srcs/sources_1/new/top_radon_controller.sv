@@ -130,8 +130,8 @@ module top_radon_controller #(
             state        <= IDLE;
             angle_idx    <= 0;
             s_idx        <= 0;
-            s_fp         <= -16'sd16384;
-            STEP_FP <= (2 * FXP_MUL) / IMG_SIZE;
+            s_fp         <= -16'sd8192;
+            STEP_FP <= (1 * FXP_MUL) / IMG_SIZE;
             done         <= 0;
             cordic_start <= 0;
             ray_start    <= 0;
@@ -144,7 +144,7 @@ module top_radon_controller #(
                     if (start) begin
                         angle_idx    <= 0;
                         s_idx        <= 0;
-                        s_fp         <= -16'sd16384;
+                        s_fp         <= -16'sd8192;
                         cordic_start <= 1;
                         state        <= START_CORDIC;
                     end
@@ -174,7 +174,7 @@ module top_radon_controller #(
                     proj_we <= 0;
                     if (s_idx == IMG_SIZE - 1) begin
                         s_idx <= 0;
-                        s_fp  <= -16'sd16384;
+                        s_fp  <= -16'sd8192;
                         if (angle_idx == ANGLE_MAX - 1) begin
                             done  <= 1;
                             state <= IDLE;

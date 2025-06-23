@@ -65,13 +65,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="1"/>
-    <Option Name="WTModelSimExportSim" Val="1"/>
-    <Option Name="WTQuestaExportSim" Val="1"/>
+    <Option Name="WTXSimExportSim" Val="2"/>
+    <Option Name="WTModelSimExportSim" Val="2"/>
+    <Option Name="WTQuestaExportSim" Val="2"/>
     <Option Name="WTIesExportSim" Val="0"/>
-    <Option Name="WTVcsExportSim" Val="1"/>
-    <Option Name="WTRivieraExportSim" Val="1"/>
-    <Option Name="WTActivehdlExportSim" Val="1"/>
+    <Option Name="WTVcsExportSim" Val="2"/>
+    <Option Name="WTRivieraExportSim" Val="2"/>
+    <Option Name="WTActivehdlExportSim" Val="2"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -95,17 +95,17 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="radon_kria_acc.bd" FileRelPathName="ip/radon_kria_acc_rst_ps8_0_99M_2/radon_kria_acc_rst_ps8_0_99M_2.xci">
-          <Proxy FileSetName="radon_kria_acc_rst_ps8_0_99M_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="radon_kria_acc.bd" FileRelPathName="ip/radon_kria_acc_radon_kria_ip_0_2/radon_kria_acc_radon_kria_ip_0_2.xci">
-          <Proxy FileSetName="radon_kria_acc_radon_kria_ip_0_2"/>
+        <CompFileExtendedInfo CompFileName="radon_kria_acc.bd" FileRelPathName="ip/radon_kria_acc_zynq_ultra_ps_e_0_2/radon_kria_acc_zynq_ultra_ps_e_0_2.xci">
+          <Proxy FileSetName="radon_kria_acc_zynq_ultra_ps_e_0_2"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="radon_kria_acc.bd" FileRelPathName="ip/radon_kria_acc_xbar_0/radon_kria_acc_xbar_0.xci">
           <Proxy FileSetName="radon_kria_acc_xbar_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="radon_kria_acc.bd" FileRelPathName="ip/radon_kria_acc_zynq_ultra_ps_e_0_2/radon_kria_acc_zynq_ultra_ps_e_0_2.xci">
-          <Proxy FileSetName="radon_kria_acc_zynq_ultra_ps_e_0_2"/>
+        <CompFileExtendedInfo CompFileName="radon_kria_acc.bd" FileRelPathName="ip/radon_kria_acc_radon_kria_ip_0_2/radon_kria_acc_radon_kria_ip_0_2.xci">
+          <Proxy FileSetName="radon_kria_acc_radon_kria_ip_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="radon_kria_acc.bd" FileRelPathName="ip/radon_kria_acc_rst_ps8_0_99M_2/radon_kria_acc_rst_ps8_0_99M_2.xci">
+          <Proxy FileSetName="radon_kria_acc_rst_ps8_0_99M_2"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/radon_kria_acc/hdl/radon_kria_acc_wrapper.v">

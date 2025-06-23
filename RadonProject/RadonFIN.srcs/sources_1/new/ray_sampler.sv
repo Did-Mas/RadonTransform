@@ -41,7 +41,7 @@ module ray_sampler #(
     localparam IDLE = 0, TRACE = 1, WAIT_ADDR = 2, WAIT_PIXEL = 3, ACCUM_DONE = 4;
     reg [2:0] state;
 
-    localparam signed [FP_BITS-1:0] T_INIT = -16'sd16384;
+    localparam signed [FP_BITS-1:0] T_INIT = -16'sd8192;
     localparam HALF_IMG = IMG_SIZE / 2;
 
     reg signed [FP_BITS-1:0] t_fp;
@@ -56,7 +56,7 @@ module ray_sampler #(
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             state <= IDLE;
-            STEP <= (32'sd2 << (FP_BITS-2)) / RAY_LENGTH;
+            STEP <= (32'sd1 << (FP_BITS-2)) / RAY_LENGTH;
             done <= 0;
             acc_sum <= 0;
             sample_count <= 0;

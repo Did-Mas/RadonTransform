@@ -1,7 +1,7 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
--- Date        : Thu Jun 19 16:41:39 2025
+-- Date        : Mon Jun 23 23:46:36 2025
 -- Host        : DESKTOP-OUATK8P running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/radon_kria_acc_radon_kria_ip_0_2_stub.vhdl

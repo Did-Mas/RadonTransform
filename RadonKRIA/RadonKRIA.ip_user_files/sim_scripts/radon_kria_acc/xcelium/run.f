@@ -51,9 +51,6 @@
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/radon_kria_acc/ip/radon_kria_acc_xbar_0/sim/radon_kria_acc_xbar_0.v" \
-  "../../../bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v" \
-  "../../../bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0.v" \
-  "../../../bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/sim/radon_kria_acc_radon_kria_ip_0_2.v" \
 -endlib
 -makelib xcelium_lib/lib_cdc_v1_0_2 \
   "../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd" \
@@ -63,6 +60,11 @@
 -endlib
 -makelib xcelium_lib/xil_defaultlib \
   "../../../bd/radon_kria_acc/ip/radon_kria_acc_rst_ps8_0_99M_2/sim/radon_kria_acc_rst_ps8_0_99M_2.vhd" \
+-endlib
+-makelib xcelium_lib/xil_defaultlib \
+  "../../../bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v" \
+  "../../../bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0.v" \
+  "../../../bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/sim/radon_kria_acc_radon_kria_ip_0_2.v" \
 -endlib
 -makelib xcelium_lib/axi_protocol_converter_v2_1_26 \
   "../../../../RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/90c8/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \

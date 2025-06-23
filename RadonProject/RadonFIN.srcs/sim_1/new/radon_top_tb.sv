@@ -91,9 +91,7 @@ module radon_top_tb;
             phantom_we   = 0;
             @(posedge clk);
         end
-        insert_rect(16, 16, 32, 32, 8'd100);   // bright square
-        insert_rect(20, 20, 8, 8, 8'd255);     // very bright core
-        insert_rect(80, 80, 20, 20, 8'd120);   // dim square
+        insert_rect(72, 72, 8, 8, 8'd255);     // very bright core
     endtask
 
     // Save phantom image

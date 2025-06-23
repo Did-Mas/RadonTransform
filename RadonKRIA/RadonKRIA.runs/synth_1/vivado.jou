@@ -2,8 +2,8 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Thu Jun 19 16:42:28 2025
-# Process ID: 26436
+# Start of session at: Mon Jun 23 23:47:42 2025
+# Process ID: 264
 # Current directory: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/synth_1
 # Command line: vivado.exe -log radon_kria_acc_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source radon_kria_acc_wrapper.tcl
 # Log file: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/synth_1/radon_kria_acc_wrapper.vds

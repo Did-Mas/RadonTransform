@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jun 19 16:40:09 2025" VIVADOVERSION="2022.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jun 23 23:44:49 2025" VIVADOVERSION="2022.1">
 
   <SYSTEMINFO ARCH="zynquplus" BOARD="xilinx.com:kv260_som:part0:1.3" DEVICE="xck26" NAME="radon_kria_acc" PACKAGE="sfvc784" SPEEDGRADE="-2LV"/>
 
@@ -765,7 +765,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="3" FULLNAME="/radon_kria_ip_0" HWVERSION="1.0" INSTANCE="radon_kria_ip_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="radon_kria_ip" VLNV="xilinx.com:user:radon_kria_ip:1.0">
+    <MODULE COREREVISION="4" FULLNAME="/radon_kria_ip_0" HWVERSION="1.0" INSTANCE="radon_kria_ip_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="radon_kria_ip" VLNV="xilinx.com:user:radon_kria_ip:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>

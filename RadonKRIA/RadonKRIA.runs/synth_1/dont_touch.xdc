@@ -13,11 +13,11 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==radon_kria_
 # IP: bd/radon_kria_acc/ip/radon_kria_acc_axi_interconnect_0_0/radon_kria_acc_axi_interconnect_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==radon_kria_acc_axi_interconnect_0_0 || ORIG_REF_NAME==radon_kria_acc_axi_interconnect_0_0} -quiet] -quiet
 
-# IP: bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/radon_kria_acc_radon_kria_ip_0_2.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==radon_kria_acc_radon_kria_ip_0_2 || ORIG_REF_NAME==radon_kria_acc_radon_kria_ip_0_2} -quiet] -quiet
-
 # IP: bd/radon_kria_acc/ip/radon_kria_acc_rst_ps8_0_99M_2/radon_kria_acc_rst_ps8_0_99M_2.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==radon_kria_acc_rst_ps8_0_99M_2 || ORIG_REF_NAME==radon_kria_acc_rst_ps8_0_99M_2} -quiet] -quiet
+
+# IP: bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/radon_kria_acc_radon_kria_ip_0_2.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==radon_kria_acc_radon_kria_ip_0_2 || ORIG_REF_NAME==radon_kria_acc_radon_kria_ip_0_2} -quiet] -quiet
 
 # IP: bd/radon_kria_acc/ip/radon_kria_acc_auto_ds_0/radon_kria_acc_auto_ds_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==radon_kria_acc_auto_ds_0 || ORIG_REF_NAME==radon_kria_acc_auto_ds_0} -quiet] -quiet

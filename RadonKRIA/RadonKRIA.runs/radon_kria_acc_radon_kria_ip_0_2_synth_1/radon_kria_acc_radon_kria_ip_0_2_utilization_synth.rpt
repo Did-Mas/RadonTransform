@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Thu Jun 19 16:41:39 2025
+| Date         : Mon Jun 23 23:46:36 2025
 | Host         : DESKTOP-OUATK8P running 64-bit major release  (build 9200)
 | Command      : report_utilization -file radon_kria_acc_radon_kria_ip_0_2_utilization_synth.rpt -pb radon_kria_acc_radon_kria_ip_0_2_utilization_synth.pb
 | Design       : radon_kria_acc_radon_kria_ip_0_2
@@ -32,11 +32,11 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| CLB LUTs*               |  371 |     0 |          0 |    117120 |  0.32 |
-|   LUT as Logic          |  371 |     0 |          0 |    117120 |  0.32 |
+| CLB LUTs*               |  380 |     0 |          0 |    117120 |  0.32 |
+|   LUT as Logic          |  380 |     0 |          0 |    117120 |  0.32 |
 |   LUT as Memory         |    0 |     0 |          0 |     57600 |  0.00 |
-| CLB Registers           |  306 |     0 |          0 |    234240 |  0.13 |
-|   Register as Flip Flop |  306 |     0 |          0 |    234240 |  0.13 |
+| CLB Registers           |  314 |     0 |          0 |    234240 |  0.13 |
+|   Register as Flip Flop |  314 |     0 |          0 |    234240 |  0.13 |
 |   Register as Latch     |    0 |     0 |          0 |    234240 |  0.00 |
 | CARRY8                  |   19 |     0 |          0 |     14640 |  0.13 |
 | F7 Muxes                |    0 |     0 |          0 |     58560 |  0.00 |
@@ -58,10 +58,10 @@ Table of Contents
 | 0     |            _ |         Set |            - |
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
-| 4     |          Yes |           - |          Set |
-| 96    |          Yes |           - |        Reset |
+| 6     |          Yes |           - |          Set |
+| 99    |          Yes |           - |        Reset |
 | 10    |          Yes |         Set |            - |
-| 196   |          Yes |       Reset |            - |
+| 199   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -158,18 +158,18 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  196 |            Register |
-| LUT6     |  104 |                 CLB |
-| LUT4     |   98 |                 CLB |
-| FDCE     |   96 |            Register |
-| LUT3     |   94 |                 CLB |
-| LUT5     |   89 |                 CLB |
-| LUT2     |   87 |                 CLB |
+| FDRE     |  199 |            Register |
+| LUT6     |  113 |                 CLB |
+| LUT5     |  104 |                 CLB |
+| LUT3     |  100 |                 CLB |
+| FDCE     |   99 |            Register |
+| LUT4     |   81 |                 CLB |
+| LUT2     |   76 |                 CLB |
 | CARRY8   |   19 |                 CLB |
 | RAMB36E2 |   16 |            BLOCKRAM |
 | FDSE     |   10 |            Register |
 | LUT1     |    8 |                 CLB |
-| FDPE     |    4 |            Register |
+| FDPE     |    6 |            Register |
 | DSP48E2  |    4 |          Arithmetic |
 +----------+------+---------------------+
 

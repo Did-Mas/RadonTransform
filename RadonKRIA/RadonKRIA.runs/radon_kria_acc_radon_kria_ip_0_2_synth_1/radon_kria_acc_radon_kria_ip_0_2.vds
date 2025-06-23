@@ -2,8 +2,8 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Thu Jun 19 16:40:18 2025
-# Process ID: 22800
+# Start of session at: Mon Jun 23 23:44:58 2025
+# Process ID: 604
 # Current directory: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/radon_kria_acc_radon_kria_ip_0_2_synth_1
 # Command line: vivado.exe -log radon_kria_acc_radon_kria_ip_0_2.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source radon_kria_acc_radon_kria_ip_0_2.tcl
 # Log file: F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/radon_kria_acc_radon_kria_ip_0_2_synth_1/radon_kria_acc_radon_kria_ip_0_2.vds
@@ -11,6 +11,7 @@
 # Running On: DESKTOP-OUATK8P, OS: Windows, CPU Frequency: 3600 MHz, CPU Physical cores: 4, Host memory: 17110 MB
 #-----------------------------------------------------------
 source radon_kria_acc_radon_kria_ip_0_2.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 1725.426 ; gain = 65.648
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'f:/StudiaNoSync/SDUP/RadonTransformREPO/ip_repo/radon_kria_ip_1.0'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'H:/Xilinx/Vivado/2022.1/data/ip'.
@@ -21,51 +22,56 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xck26'
 INFO: [Device 21-403] Loading part xck26-sfvc784-2LV-c
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 22464
+INFO: [Synth 8-7075] Helper process launched with PID 20076
+WARNING: [Synth 8-9971] redeclaration of ansi port 'angle_idx' is not allowed [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:470]
+WARNING: [Synth 8-9971] redeclaration of ansi port 'sin_val' is not allowed [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:500]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2095.781 ; gain = 319.578
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 2095.848 ; gain = 319.371
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'radon_kria_acc_radon_kria_ip_0_2' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/synth/radon_kria_acc_radon_kria_ip_0_2.v:53]
-INFO: [Synth 8-6157] synthesizing module 'radon_kria_ip_v1_0' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0.v:4]
-INFO: [Synth 8-6157] synthesizing module 'radon_kria_ip_v1_0_S00_AXI' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:4]
-INFO: [Synth 8-226] default block is never used [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:231]
-INFO: [Synth 8-226] default block is never used [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:372]
-INFO: [Synth 8-6157] synthesizing module 'top_radon_controller' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:446]
-INFO: [Synth 8-6157] synthesizing module 'cordic_rtl' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:748]
-INFO: [Synth 8-155] case statement is not full and has no default [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:793]
-INFO: [Synth 8-6155] done synthesizing module 'cordic_rtl' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:748]
-INFO: [Synth 8-6157] synthesizing module 'ray_sampler' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:658]
-INFO: [Synth 8-155] case statement is not full and has no default [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:701]
-INFO: [Synth 8-6155] done synthesizing module 'ray_sampler' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:658]
-INFO: [Synth 8-6157] synthesizing module 'phantom_mem' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:621]
-INFO: [Synth 8-6155] done synthesizing module 'phantom_mem' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:621]
-INFO: [Synth 8-6157] synthesizing module 'projection_mem' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:639]
-INFO: [Synth 8-6155] done synthesizing module 'projection_mem' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:639]
-INFO: [Synth 8-155] case statement is not full and has no default [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:564]
-INFO: [Synth 8-6155] done synthesizing module 'top_radon_controller' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:446]
-INFO: [Synth 8-6155] done synthesizing module 'radon_kria_ip_v1_0_S00_AXI' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:4]
-INFO: [Synth 8-6155] done synthesizing module 'radon_kria_ip_v1_0' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0.v:4]
+INFO: [Synth 8-6157] synthesizing module 'radon_kria_ip_v1_0' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0.v:4]
+INFO: [Synth 8-6157] synthesizing module 'radon_kria_ip_v1_0_S00_AXI' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:4]
+INFO: [Synth 8-226] default block is never used [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:231]
+INFO: [Synth 8-226] default block is never used [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:372]
+INFO: [Synth 8-6157] synthesizing module 'top_radon_controller' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:447]
+INFO: [Synth 8-6157] synthesizing module 'cordic_rtl' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:762]
+INFO: [Synth 8-155] case statement is not full and has no default [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:807]
+INFO: [Synth 8-6155] done synthesizing module 'cordic_rtl' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:762]
+INFO: [Synth 8-6157] synthesizing module 'ray_sampler' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:672]
+INFO: [Synth 8-155] case statement is not full and has no default [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:715]
+INFO: [Synth 8-6155] done synthesizing module 'ray_sampler' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:672]
+INFO: [Synth 8-6157] synthesizing module 'phantom_mem' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:635]
+INFO: [Synth 8-6155] done synthesizing module 'phantom_mem' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:635]
+INFO: [Synth 8-6157] synthesizing module 'projection_mem' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:653]
+INFO: [Synth 8-6155] done synthesizing module 'projection_mem' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:653]
+INFO: [Synth 8-155] case statement is not full and has no default [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:570]
+INFO: [Synth 8-6155] done synthesizing module 'top_radon_controller' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:447]
+WARNING: [Synth 8-7071] port 'angle_idx' of module 'top_radon_controller' is unconnected for instance 'radon_inst' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:428]
+WARNING: [Synth 8-7071] port 'sin_val' of module 'top_radon_controller' is unconnected for instance 'radon_inst' [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:428]
+WARNING: [Synth 8-7023] instance 'radon_inst' of module 'top_radon_controller' has 12 connections declared, but only 10 given [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:428]
+INFO: [Synth 8-6155] done synthesizing module 'radon_kria_ip_v1_0_S00_AXI' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'radon_kria_ip_v1_0' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0.v:4]
 INFO: [Synth 8-6155] done synthesizing module 'radon_kria_acc_radon_kria_ip_0_2' (0#1) [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ip/radon_kria_acc_radon_kria_ip_0_2/synth/radon_kria_acc_radon_kria_ip_0_2.v:53]
-WARNING: [Synth 8-7137] Register angle_mirrored_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:800]
-WARNING: [Synth 8-7137] Register mirror_sign_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:801]
-WARNING: [Synth 8-7137] Register x_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:806]
-WARNING: [Synth 8-7137] Register y_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:807]
-WARNING: [Synth 8-7137] Register z_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:808]
-WARNING: [Synth 8-7137] Register i_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:809]
-WARNING: [Synth 8-7137] Register cos_out_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:830]
-WARNING: [Synth 8-7137] Register sin_out_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:831]
-WARNING: [Synth 8-6014] Unused sequential element mult1_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:712]
-WARNING: [Synth 8-6014] Unused sequential element mult2_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:713]
-WARNING: [Synth 8-6014] Unused sequential element mult3_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:714]
-WARNING: [Synth 8-6014] Unused sequential element mult4_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:715]
-WARNING: [Synth 8-6014] Unused sequential element x_scaled_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:721]
-WARNING: [Synth 8-6014] Unused sequential element y_scaled_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:722]
-WARNING: [Synth 8-7137] Register x_fp_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:716]
-WARNING: [Synth 8-7137] Register y_fp_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:717]
-WARNING: [Synth 8-7137] Register xi_clamped_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:723]
-WARNING: [Synth 8-7137] Register yi_clamped_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:724]
-WARNING: [Synth 8-7137] Register projection_out_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:739]
-WARNING: [Synth 8-3848] Net slv_reg3 in module/entity radon_kria_ip_v1_0_S00_AXI does not have driver. [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/d956/hdl/radon_kria_ip_v1_0_S00_AXI.v:110]
+WARNING: [Synth 8-7137] Register angle_mirrored_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:814]
+WARNING: [Synth 8-7137] Register mirror_sign_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:815]
+WARNING: [Synth 8-7137] Register x_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:820]
+WARNING: [Synth 8-7137] Register y_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:821]
+WARNING: [Synth 8-7137] Register z_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:822]
+WARNING: [Synth 8-7137] Register i_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:823]
+WARNING: [Synth 8-7137] Register cos_out_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:844]
+WARNING: [Synth 8-7137] Register sin_out_reg in module cordic_rtl has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:845]
+WARNING: [Synth 8-6014] Unused sequential element mult1_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:726]
+WARNING: [Synth 8-6014] Unused sequential element mult2_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:727]
+WARNING: [Synth 8-6014] Unused sequential element mult3_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:728]
+WARNING: [Synth 8-6014] Unused sequential element mult4_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:729]
+WARNING: [Synth 8-6014] Unused sequential element x_scaled_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:735]
+WARNING: [Synth 8-6014] Unused sequential element y_scaled_reg was removed.  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:736]
+WARNING: [Synth 8-7137] Register x_fp_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:730]
+WARNING: [Synth 8-7137] Register y_fp_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:731]
+WARNING: [Synth 8-7137] Register xi_clamped_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:737]
+WARNING: [Synth 8-7137] Register yi_clamped_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:738]
+WARNING: [Synth 8-7137] Register projection_out_reg in module ray_sampler has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:753]
+WARNING: [Synth 8-3848] Net slv_reg3 in module/entity radon_kria_ip_v1_0_S00_AXI does not have driver. [f:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.gen/sources_1/bd/radon_kria_acc/ipshared/4590/hdl/radon_kria_ip_v1_0_S00_AXI.v:110]
 WARNING: [Synth 8-7129] Port addr[15] in module projection_mem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[15] in module phantom_mem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port addr[14] in module phantom_mem is either unconnected or has no load
@@ -76,32 +82,32 @@ WARNING: [Synth 8-7129] Port S_AXI_ARPROT[2] in module radon_kria_ip_v1_0_S00_AX
 WARNING: [Synth 8-7129] Port S_AXI_ARPROT[1] in module radon_kria_ip_v1_0_S00_AXI is either unconnected or has no load
 WARNING: [Synth 8-7129] Port S_AXI_ARPROT[0] in module radon_kria_ip_v1_0_S00_AXI is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 2192.082 ; gain = 415.879
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:12 . Memory (MB): peak = 2193.312 ; gain = 416.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 2205.551 ; gain = 429.348
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:13 . Memory (MB): peak = 2206.391 ; gain = 429.914
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 2205.551 ; gain = 429.348
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:13 . Memory (MB): peak = 2206.391 ; gain = 429.914
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2205.551 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.062 . Memory (MB): peak = 2206.391 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2308.934 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2309.805 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.147 . Memory (MB): peak = 2326.848 ; gain = 17.914
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.206 . Memory (MB): peak = 2327.641 ; gain = 17.836
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 2326.848 ; gain = 550.645
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:24 . Memory (MB): peak = 2327.641 ; gain = 551.164
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -109,13 +115,13 @@ Start Loading Part and Timing Information
 Loading part: xck26-sfvc784-2LV-c
 INFO: [Synth 8-6742] Reading net delay rules and data
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2326.848 ; gain = 550.645
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:24 . Memory (MB): peak = 2327.641 ; gain = 551.164
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2326.848 ; gain = 550.645
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:24 . Memory (MB): peak = 2327.641 ; gain = 551.164
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'cordic_rtl'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'ray_sampler'
@@ -151,7 +157,7 @@ INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'top_radon_controller'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 2326.848 ; gain = 550.645
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:25 . Memory (MB): peak = 2327.641 ; gain = 551.164
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -167,13 +173,14 @@ Detailed RTL Component Info :
 	               16 Bit    Registers := 19    
 	                8 Bit    Registers := 4     
 	                4 Bit    Registers := 3     
+	                3 Bit    Registers := 1     
 	                2 Bit    Registers := 2     
 	                1 Bit    Registers := 13    
 +---RAMs : 
 	             360K Bit	(23040 X 16 bit)          RAMs := 1     
 	             128K Bit	(16384 X 8 bit)          RAMs := 1     
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 3     
+	   2 Input   32 Bit        Muxes := 2     
 	   4 Input   32 Bit        Muxes := 3     
 	   2 Input   16 Bit        Muxes := 12    
 	  17 Input   16 Bit        Muxes := 1     
@@ -183,9 +190,10 @@ Detailed RTL Component Info :
 	   6 Input    4 Bit        Muxes := 1     
 	   5 Input    3 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 5     
-	   6 Input    3 Bit        Muxes := 2     
+	   6 Input    3 Bit        Muxes := 3     
+	   2 Input    2 Bit        Muxes := 1     
 	   6 Input    1 Bit        Muxes := 27    
-	   2 Input    1 Bit        Muxes := 12    
+	   2 Input    1 Bit        Muxes := 13    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -230,7 +238,7 @@ INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 3 and width 4
 INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 2 and width 2 for RAM "radon_kria_acc_radon_kria_ip_0_2/inst/radon_kria_ip_v1_0_S00_AXI_inst/radon_inst/proj_inst/mem_reg"
 INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 1 for RAM "radon_kria_acc_radon_kria_ip_0_2/inst/radon_kria_ip_v1_0_S00_AXI_inst/radon_inst/proj_inst/mem_reg"
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 2326.848 ; gain = 550.645
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 2327.641 ; gain = 551.164
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -264,13 +272,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:41 . Memory (MB): peak = 2808.805 ; gain = 1032.602
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:50 . Memory (MB): peak = 2814.809 ; gain = 1038.332
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:41 . Memory (MB): peak = 2808.805 ; gain = 1032.602
+Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:51 . Memory (MB): peak = 2814.809 ; gain = 1038.332
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -292,7 +300,7 @@ Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-7052] The timing for the instance inst/radon_kria_ip_v1_0_S00_AXI_inst/radon_inst/phantom_inst/mem_reg_bram_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:35 ; elapsed = 00:00:41 . Memory (MB): peak = 2827.074 ; gain = 1050.871
+Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:51 . Memory (MB): peak = 2832.102 ; gain = 1055.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -310,37 +318,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2837.352 ; gain = 1061.148
+Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 2843.438 ; gain = 1066.961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2837.352 ; gain = 1061.148
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 2843.438 ; gain = 1066.961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2837.352 ; gain = 1061.148
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 2843.438 ; gain = 1066.961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2837.352 ; gain = 1061.148
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 2843.438 ; gain = 1066.961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2837.352 ; gain = 1061.148
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 2843.438 ; gain = 1066.961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2837.352 ; gain = 1061.148
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 2843.438 ; gain = 1066.961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -377,42 +385,42 @@ Report Cell Usage:
 |10    |DSP_PREADD      |     4|
 |11    |DSP_PREADD_DATA |     4|
 |12    |LUT1            |     8|
-|13    |LUT2            |    87|
-|14    |LUT3            |    94|
-|15    |LUT4            |    98|
-|16    |LUT5            |    89|
-|17    |LUT6            |   104|
+|13    |LUT2            |    76|
+|14    |LUT3            |   100|
+|15    |LUT4            |    81|
+|16    |LUT5            |   104|
+|17    |LUT6            |   113|
 |18    |RAMB36E2        |    16|
-|28    |FDCE            |    96|
-|29    |FDPE            |     4|
-|30    |FDRE            |   196|
+|28    |FDCE            |    99|
+|29    |FDPE            |     6|
+|30    |FDRE            |   199|
 |31    |FDSE            |    10|
 +------+----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:47 . Memory (MB): peak = 2837.352 ; gain = 1061.148
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 2843.438 ; gain = 1066.961
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:45 . Memory (MB): peak = 2837.352 ; gain = 939.852
-Synthesis Optimization Complete : Time (s): cpu = 00:00:42 ; elapsed = 00:00:48 . Memory (MB): peak = 2837.352 ; gain = 1061.148
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:51 . Memory (MB): peak = 2843.438 ; gain = 945.711
+Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 2843.438 ; gain = 1066.961
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 2850.422 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 2855.465 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 23 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2874.648 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2877.434 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 4 instances were transformed.
   DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 4 instances
 
-Synth Design complete, checksum: 415ef209
+Synth Design complete, checksum: cc81f3b1
 INFO: [Common 17-83] Releasing license: Synthesis
-63 Infos, 36 Warnings, 0 Critical Warnings and 0 Errors encountered.
+63 Infos, 41 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:50 ; elapsed = 00:00:59 . Memory (MB): peak = 2874.648 ; gain = 1272.090
+synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:01:10 . Memory (MB): peak = 2877.434 ; gain = 1152.008
 INFO: [Common 17-1381] The checkpoint 'F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/radon_kria_acc_radon_kria_ip_0_2_synth_1/radon_kria_acc_radon_kria_ip_0_2.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP radon_kria_acc_radon_kria_ip_0_2, cache-ID = 633f393004cd80c3
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP radon_kria_acc_radon_kria_ip_0_2, cache-ID = a82dd08060d45af2
 INFO: [Coretcl 2-1174] Renamed 7 cell refs.
 INFO: [Common 17-1381] The checkpoint 'F:/StudiaNoSync/SDUP/RadonTransformREPO/RadonKRIA/RadonKRIA.runs/radon_kria_acc_radon_kria_ip_0_2_synth_1/radon_kria_acc_radon_kria_ip_0_2.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file radon_kria_acc_radon_kria_ip_0_2_utilization_synth.rpt -pb radon_kria_acc_radon_kria_ip_0_2_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Jun 19 16:41:39 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Jun 23 23:46:36 2025...
