@@ -401,12 +401,10 @@
 
     wire        radon_start;
     wire        radon_rst;
-    wire        radon_done;
     wire        phantom_we;
     wire [15:0] phantom_addr;
     wire [7:0]  phantom_data;
     wire [15:0] proj_read_addr;
-    wire [15:0] proj_data_out;
 
     assign radon_start    = slv_reg0[0];
     assign radon_rst      = slv_reg0[1];
@@ -414,6 +412,13 @@
     assign phantom_addr   = slv_reg0[31:16];
     assign phantom_data   = slv_reg1[7:0];
     assign proj_read_addr = slv_reg1[24:16];
+    
+    wire [C_S_AXI_DATA_WIDTH -1:0] slv_wire2;
+    assign slv_wire2[15:4] = 12'b0;  
+
+    // Output register update for status
+    always @(posedge S_AXI_ACLK)
+        slv_reg2 <= slv_wire2;
 
     top_radon_controller #(
         .ANGLE_MAX(180),
@@ -424,20 +429,16 @@
         .clk(S_AXI_ACLK),
         .rst(radon_rst),
         .start(radon_start),
-        .done(radon_done),
+        .done(slv_wire2[0]),
+        .state_out(slv_wire2[3:1]),
         .phantom_we_ext(phantom_we),
         .phantom_addr_ext(phantom_addr),
         .phantom_data_ext(phantom_data),
         .proj_read_addr(proj_read_addr),
-        .proj_data_out(proj_data_out)
+        .proj_data_out(slv_wire2[31:16])
     );
 
-    // Output register update for status
-    always @(posedge S_AXI_ACLK)
-      if (S_AXI_ARESETN == 1'b0)
-        slv_reg2 <= 0;
-      else
-      slv_reg2 <= {proj_data_out, 15'b0, radon_done};
+
 
 	// User logic ends
 
@@ -453,6 +454,7 @@
     input rst,
     input start,
     output reg done,
+    output reg [2:0] state_out,
 
     input  phantom_we_ext,
     input  [15:0] phantom_addr_ext,
@@ -551,6 +553,7 @@
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             state        <= IDLE;
+            state_out    <= IDLE;
             angle_idx    <= 0;
             s_idx        <= 0;
             s_fp         <= -16'sd16384;
@@ -563,26 +566,30 @@
         end else begin
             case (state)
                 IDLE: begin
-                    done <= 0;
+//                    done <= 0;
                     if (start) begin
                         angle_idx    <= 0;
                         s_idx        <= 0;
                         s_fp         <= -16'sd16384;
                         cordic_start <= 1;
                         state        <= START_CORDIC;
+                        state_out    <= START_CORDIC;
                     end
                 end
                 START_CORDIC: begin
                     cordic_start <= 0;
                     state <= WAIT_CORDIC;
+                    state_out <= WAIT_CORDIC;
                 end
                 WAIT_CORDIC: begin
                     if (cordic_ready)
                         state <= START_RAY;
+                        state_out <= START_RAY;
                 end
                 START_RAY: begin
                     ray_start <= 1;
                     state <= WAIT_RAY;
+                    state_out <= WAIT_RAY;
                 end
                 WAIT_RAY: begin
                     ray_start <= 0;
@@ -591,6 +598,7 @@
                         proj_addr <= angle_idx  * IMG_SIZE + s_idx;
                         proj_we <= 1;
                         state <= ADVANCE;
+                        state_out <= ADVANCE;
                     end
                 end
                 ADVANCE: begin
@@ -601,15 +609,18 @@
                         if (angle_idx == ANGLE_MAX - 1) begin
                             done  <= 1;
                             state <= IDLE;
+                            state_out <= IDLE;
                         end else begin
                             angle_idx    <= angle_idx + 1;
                             cordic_start <= 1;
                             state        <= START_CORDIC;
+                            state_out        <= START_CORDIC;
                         end
                     end else begin
                         s_idx <= s_idx + 1;
                         s_fp  <= s_fp + STEP_FP;
                         state <= START_RAY;
+                        state_out <= START_RAY;
                     end
                 end
             endcase
