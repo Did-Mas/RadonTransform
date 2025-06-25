@@ -15,11 +15,11 @@ from PyQt5.QtWidgets import (
     QProgressBar,
     QComboBox,
     QProgressDialog,
+    QPushButton,
 )
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QPainter, QColor
 import numpy as np
-import tqdm
 from matplotlib import pyplot as plt
 from skimage.transform import iradon
 from PIL import Image
@@ -51,19 +51,7 @@ def create_phantom(phantom_type, size=128):
     if phantom_type == "AGH Phantom (File)":
         try:
             agh_phantom = read_phatnom("agh_phantom.png")
-            # Resize AGH phantom to match the requested size
-            from PIL import Image
-
-            agh_img = Image.fromarray(agh_phantom)
-            agh_resized = agh_img.resize((size, size), Image.Resampling.LANCZOS)
-            agh_array = np.array(agh_resized, dtype=np.uint8)
-
-            # Apply circular mask to ensure phantom fits in inscribed circle
-            y, x = np.ogrid[:size, :size]
-            mask = (x - center) ** 2 + (y - center) ** 2 <= radius**2
-            agh_array[~mask] = 0
-
-            return agh_array
+            return agh_phantom
         except:
             # Fallback to simple phantom if file not found
             phantom_type = "Simple Rectangles"
@@ -182,7 +170,6 @@ def create_phantom(phantom_type, size=128):
 
 class RadonVIS(QMainWindow):
     def __init__(self, parent=None, splash=None):
-        print("Initializing RadonVIS...")
         super(RadonVIS, self).__init__(parent)
         self.setWindowTitle("Radon Visualization")
         self.resize(1600, 900)
@@ -254,8 +241,6 @@ class RadonVIS(QMainWindow):
 
         self.alpha_deg = 0.0
 
-        print("RadonVIS initialized successfully.")
-
     def _setup_ui(self):
         self.central_widget = QWidget(self)
         self.setCentralWidget(self.central_widget)
@@ -270,7 +255,7 @@ class RadonVIS(QMainWindow):
         self.phantom_combo = QComboBox()
         self.phantom_combo.addItems(self.phantom_types)
         self.phantom_combo.setCurrentText(self.current_phantom_type)
-        self.phantom_combo.currentTextChanged.connect(self.on_phantom_changed)
+        self.phantom_combo.currentTextChanged.connect(self.on_phantom_combo_changed)
         controls_layout.addWidget(self.phantom_combo)
 
         # Size selection
@@ -278,8 +263,14 @@ class RadonVIS(QMainWindow):
         self.size_combo = QComboBox()
         self.size_combo.addItems([str(size) for size in self.size_options])
         self.size_combo.setCurrentText(str(self.current_size))
-        self.size_combo.currentTextChanged.connect(self.on_size_changed)
+        self.size_combo.currentTextChanged.connect(self.on_size_combo_changed)
         controls_layout.addWidget(self.size_combo)
+
+        # Submit button
+        self.submit_button = QPushButton("Apply Changes")
+        self.submit_button.clicked.connect(self.on_submit_changes)
+        self.submit_button.setEnabled(False)  # Initially disabled
+        controls_layout.addWidget(self.submit_button)
 
         controls_layout.addStretch()  # Add stretch to push controls to the left
 
@@ -452,25 +443,102 @@ class RadonVIS(QMainWindow):
         """Update the alpha value based on the slider position."""
         self.alpha_deg = value
 
+    def on_phantom_combo_changed(self, phantom_type):
+        """Handle phantom type selection change without immediately applying it."""
+        # Check if AGH Phantom (File) is selected and restrict size to 128
+        if phantom_type == "AGH Phantom (File)":
+            # Temporarily disconnect size combo signal
+            self.size_combo.currentTextChanged.disconnect()
+            self.size_combo.clear()
+            self.size_combo.addItem("128")
+            self.size_combo.setCurrentText("128")
+            # Reconnect signal
+            self.size_combo.currentTextChanged.connect(self.on_size_combo_changed)
+        else:
+            # Re-enable all size options for other phantoms
+            current_selection = self.size_combo.currentText()
+            self.size_combo.currentTextChanged.disconnect()
+            self.size_combo.clear()
+            self.size_combo.addItems([str(size) for size in self.size_options])
+
+            # Restore previous selection if valid
+            if current_selection in [str(size) for size in self.size_options]:
+                self.size_combo.setCurrentText(current_selection)
+            else:
+                self.size_combo.setCurrentText(str(self.current_size))
+            # Reconnect signal
+            self.size_combo.currentTextChanged.connect(self.on_size_combo_changed)
+
+        # Enable submit button if there are changes
+        self.check_for_changes()
+
+    def on_size_combo_changed(self, size_str):
+        """Handle size selection change without immediately applying it."""
+        # Enable submit button if there are changes
+        self.check_for_changes()
+
+    def check_for_changes(self):
+        """Check if current selections differ from applied settings and enable/disable submit button."""
+        current_phantom = self.phantom_combo.currentText()
+        size_text = self.size_combo.currentText()
+
+        if not size_text:
+            self.submit_button.setEnabled(False)
+            return
+
+        try:
+            current_size = int(size_text)
+        except ValueError:
+            self.submit_button.setEnabled(False)
+            return
+
+        has_changes = current_phantom != self.current_phantom_type or current_size != self.current_size
+
+        self.submit_button.setEnabled(has_changes)
+
+    def on_submit_changes(self):
+        """Handle submit button click to apply phantom and size changes."""
+        selected_phantom = self.phantom_combo.currentText()
+        selected_size = int(self.size_combo.currentText())
+
+        # Check if size changed
+        size_changed = selected_size != self.current_size
+
+        # Update current values
+        self.current_phantom_type = selected_phantom
+        self.current_size = selected_size
+        if size_changed:
+            self.L = selected_size
+
+        # Apply the changes using the existing phantom change method
+        success = self.on_phantom_changed(selected_phantom, size_changed)
+
+        # Disable submit button after applying changes
+        if success:
+            self.submit_button.setEnabled(False)
+
     def on_phantom_changed(self, phantom_type, size_change=False):
         """Handle phantom type change - update phantom, sinogram, and reconstruction."""
-        print(f"Phantom changed to: {phantom_type}, Size: {self.current_size}")
         self.current_phantom_type = phantom_type
 
         # Create progress dialog
-        progress = QProgressDialog("Updating phantom and recalculating...", "Cancel", 0, 100, self)
+        progress = QProgressDialog("Recalculating...", "Cancel", 0, 100, self)
         progress.setWindowTitle("Processing")
         progress.setModal(True)
         progress.setMinimumDuration(0)  # Show immediately
         progress.show()
         QApplication.processEvents()
 
-        # Generate new phantom
-        progress.setLabelText("Generating phantom image...")
-        progress.setValue(5)
-        QApplication.processEvents()
-
         self.phantom = create_phantom(phantom_type, self.current_size)
+
+        sinogram = self.calc_sinogram_with_progress(progress, 0, 99)
+
+        if progress.wasCanceled():
+            progress.close()
+            return False
+
+        progress.setValue(100)
+        progress.close()
 
         # Update plot ranges if size changed
         if size_change:
@@ -485,52 +553,21 @@ class RadonVIS(QMainWindow):
             self.bar_width = 1 / self.L
             self.ray_plot_widget.setXRange(-self.bar_width, 1 + self.bar_width)
 
-        # Clear existing phantom image and add new one
-        progress.setLabelText("Updating phantom display...")
-        progress.setValue(15)
-        QApplication.processEvents()
-
         self.im_plot_widget.clear()
         self.im_plot_widget.addItem(graph.ImageItem(self.phantom, autoLevels=True, axisOrder="row-major"))
 
         # Redraw grid and border
         self.draw_pixel_grid()
 
-        # Recalculate sinogram with progress updates
-        progress.setLabelText("Calculating sinogram...")
-        progress.setValue(20)
-        QApplication.processEvents()
-
-        sinogram = self.calc_sinogram_with_progress(progress, 20, 70)
-
-        if progress.wasCanceled():
-            progress.close()
-            return
-
         max_sinogram_value = np.max(sinogram)
         self.nb_of_dig = len(str(int(max_sinogram_value)))
-
-        # Update sinogram plot
-        progress.setLabelText("Updating sinogram display...")
-        progress.setValue(75)
-        QApplication.processEvents()
 
         self.sinogram_plot_widget.clear()
         self.sinogram_plot_widget.addItem(graph.ImageItem(sinogram.T, autoLevels=True, lut=(plt.get_cmap("inferno")(np.linspace(0, 1, 256))[:, :3] * 255).astype(np.uint8)))
         self.sin_point = self.sinogram_plot_widget.plot([0], [0], pen=graph.mkPen(color="red", width=2), symbol="o", symbolSize=8, symbolPen="red", symbolBrush="red")
 
-        # Recalculate inverse radon transform
-        progress.setLabelText("Calculating inverse Radon transform...")
-        progress.setValue(80)
-        QApplication.processEvents()
-
         irad = iradon(sinogram, theta=np.arange(0, self.max_angle, 1), circle=True)
         irad = np.flipud(irad)
-
-        # Update inverse radon plot
-        progress.setLabelText("Updating reconstruction display...")
-        progress.setValue(90)
-        QApplication.processEvents()
 
         self.iradon_plot_widget.clear()
         self.iradon_plot_widget.addItem(graph.ImageItem(irad, autoLevels=True, axisOrder="row-major"))
@@ -539,32 +576,13 @@ class RadonVIS(QMainWindow):
         border_pen = graph.mkPen(color="gray", width=2)
         self.iradon_plot_widget.plot([0, self.L, self.L, 0, 0], [0, 0, self.L, self.L, 0], pen=border_pen)
 
-        # Re-add ray visualization to maintain visibility
-        progress.setLabelText("Updating ray visualization...")
-        progress.setValue(95)
-        QApplication.processEvents()
-
         # Ensure ray plot widget has the ray items
         self.ray = self.im_plot_widget.plot([], [], pen=None, symbol="o", symbolSize=3, symbolPen="red", symbolBrush="red")
         self.ray.setZValue(10)
 
         # Update current ray visualization
         self.update_ray()
-
-        # Complete
-        progress.setValue(100)
-        progress.close()
-
-        print("Phantom update complete.")
-
-    def on_size_changed(self, size_str):
-        """Handle image size change."""
-        new_size = int(size_str)
-        if new_size != self.current_size:
-            self.current_size = new_size
-            self.L = new_size
-            # Trigger phantom reload with new size
-            self.on_phantom_changed(self.current_phantom_type, size_change=True)
+        return True
 
     def on_left_tab_changed(self, index):
         """Handle tab change to enable/disable sliders."""
